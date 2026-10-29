@@ -1,0 +1,12 @@
+{
+  "name": "neon-circuit-racing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A browser-based 3D multiplayer racing game",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

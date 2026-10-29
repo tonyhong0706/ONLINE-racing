@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10120f" />
+    <meta name="description" content="加入 Neon Circuit，駕駛你的賽車，在霓虹賽道上與好友一決勝負。" />
+    <title>Neon Circuit — 線上賽車</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="/game.js"></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <div id="scene" aria-label="3D 賽車遊戲畫面"></div>
+      <div class="vignette"></div>
+
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Neon Circuit 首頁">
+          <span class="brand-mark">N<span>×</span></span>
+          <span class="brand-name">NEON <strong>CIRCUIT</strong></span>
+        </a>
+        <div class="track-label"><span class="live-dot"></span><span id="connection-label">準備就緒</span><span class="track-divider">/</span>夜幕灣賽道</div>
+        <button id="sound-button" class="icon-button" aria-label="切換音效" title="切換音效">◖</button>
+      </header>
+
+      <section id="welcome" class="welcome-card" aria-labelledby="welcome-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span>午夜賽事 · 第 07 回</div>
+        <h1 id="welcome-title">踩下油門，<br /><span>征服夜色。</span></h1>
+        <p class="welcome-copy">霓虹已亮，賽道就在眼前。<br />邀上好友，看看誰才是今晚的車神。</p>
+
+        <label class="field-label" for="player-name">你的車手代號</label>
+        <input id="player-name" class="text-field" maxlength="16" value="RACER" autocomplete="nickname" />
+        <div class="room-row">
+          <div class="room-field">
+            <label class="field-label" for="room-code">賽事房間</label>
+            <input id="room-code" class="text-field" maxlength="12" placeholder="輸入好友房號，或建立新房間" />
+          </div>
+        </div>
+        <button id="start-button" class="start-button"><span>快速開始</span><span class="button-arrow">→</span></button>
+        <button id="create-room-button" class="create-room-button">＋　建立房間並開始</button>
+        <p id="room-feedback" class="room-feedback" role="status" aria-live="polite"></p>
+
+        <div class="welcome-footer">
+          <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 或方向鍵</span>
+          <span class="footer-divider"></span>
+          <span><kbd>SPACE</kbd> 漂移</span>
+        </div>
+      </section>
+
+      <section id="race-hud" class="race-hud" aria-label="賽事資訊" hidden>
+        <div class="hud-top-left">
+          <div class="race-tag"><span class="live-dot"></span>LIVE RACE</div>
+          <div class="lap-card"><span class="hud-label">LAP</span><strong id="lap-value">01 <small>/ 03</small></strong></div>
+        </div>
+        <div class="hud-top-right">
+          <div class="position-card"><span class="hud-label">POSITION</span><strong id="position-value">1<small>ST</small></strong></div>
+          <div class="room-chip">房間 <strong id="room-value">—</strong><button id="copy-room" aria-label="複製房間邀請連結" title="複製房間邀請連結">↗ 邀請好友</button></div>
+        </div>
+        <div class="speedometer"><strong id="speed-value">000</strong><span>KM/H</span><i></i></div>
+        <div class="race-bottom">
+          <div class="race-message"><strong id="race-message">比賽開始！</strong><span>繞行三圈，率先衝線。</span></div>
+          <div class="mini-map-wrap"><span class="map-label">NIGHT BAY CIRCUIT</span><svg id="mini-map" viewBox="0 0 170 100" aria-label="賽道與玩家位置"></svg></div>
+        </div>
+        <div id="touch-controls" class="touch-controls" aria-label="觸控賽車控制">
+          <button data-control="left" aria-label="左轉">←</button><button data-control="brake" aria-label="煞車">↓</button>
+          <button data-control="right" aria-label="右轉">→</button><button data-control="gas" aria-label="加速">↑</button>
+        </div>
+      </section>
+
+      <div id="countdown" class="countdown" hidden>3</div>
+      <div id="finish-overlay" class="finish-overlay" hidden>
+        <div class="eyebrow"><span class="eyebrow-line"></span>CHECKERED FLAG</div>
+        <h2 id="finish-title">漂亮的勝利。</h2>
+        <p id="finish-copy">賽事完成。</p>
+        <button id="replay-button" class="start-button"><span>再跑一場</span><span class="button-arrow">↻</span></button>
+      </div>
+
+      <footer class="bottom-bar"><span>NEON CIRCUIT <span class="footer-muted">© 2026</span></span><span class="bottom-track">NIGHT BAY <span>—</span> 3.8 KM</span><span>ENGINEERED FOR THE NIGHT <span class="footer-muted">✳</span></span></footer>
+    </main>
+  </body>
+</html>
