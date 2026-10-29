@@ -22,7 +22,25 @@ npm start
 
 ## 部署公開網址
 
-專案附有 Render Blueprint 設定。將專案推送到 GitHub，登入 [Render](https://render.com)，選擇 **New → Blueprint** 並連結此 repository，Render 會依照 `render.yaml` 部署 Node.js 與 WebSocket 伺服器。部署完成後，把 Render 提供的 `https://...onrender.com` 網址分享給玩家。
+### 第一次部署：取得可以分享的公開網址
+
+1. **登入 GitHub**：[前往 GitHub 登入](https://github.com/login)。如果尚未有帳號，請先[建立 GitHub 帳號](https://github.com/signup)。請勿把密碼或驗證碼傳給別人。
+2. **確認遊戲專案**：[開啟 ONLINE-racing GitHub repository](https://github.com/tonyhong0706/ONLINE-racing)。Render 會從這個 repository 取得遊戲程式。
+3. **登入 Render**：[前往 Render Dashboard](https://dashboard.render.com/login)，選擇 **Continue with GitHub**，並依照畫面授權 Render 存取 repository。
+4. **建立 Blueprint**：登入後打開 [Render Dashboard](https://dashboard.render.com)，按 **New → Blueprint**，選擇 `tonyhong0706/ONLINE-racing`。
+5. **確認並部署**：Render 會讀取專案中的 [`render.yaml`](./render.yaml)，顯示服務設定；按 **Apply**／**Deploy Blueprint** 開始部署。等待服務狀態變成 **Live**。
+6. **複製公開網址**：在 Render 服務頁面按 **Visit**，或複製服務名稱下方的 `https://...onrender.com` 網址。這才是可以傳給外部玩家的公開遊戲連結。
+
+詳細步驟也可參考 [Render Blueprint 官方文件](https://render.com/docs/blueprint-spec)。遊戲已在 GitHub 上，通常不需要再手動推送程式碼。
+
+### 開房及邀請玩家
+
+1. 開啟你的 Render 公開網址。
+2. 按 **建立房間並開始**。
+3. 在賽道畫面按右上角 **邀請好友**，複製房間邀請連結。
+4. 把連結傳給好友。好友開啟後，確認畫面顯示相同房號，再按 **加入房間並開始**。
+
+也可以傳送 Render 公開網址給好友，請對方輸入相同房號加入。分享 `localhost` 或 `127.0.0.1` 只會連到你自己的裝置，不能當成公開網址。
 
 請使用支援持續連線與 WebSocket 的 Node.js 主機；不要將此遊戲部署到不支援 WebSocket 的靜態網站或 serverless 服務。Render 免費方案閒置時可能休眠，首次開啟需要等待伺服器喚醒。
 
